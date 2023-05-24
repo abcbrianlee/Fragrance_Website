@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block title %}Detail Page{% endblock %}
+
+{%block content %}
+<style>
+    .breadcrumb {
+    font-size: 14px;
+    margin: 10px 0;
+    background-color: white;
+  }
+
+  .breadcrumb a {
+    color: #555;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumb::before {
+    content: ">";
+    margin: 0 5px;
+    color: #555;
+  }
+
+  .breadcrumb .active {
+    color: #888;
+    font-weight: bold;
+  }
+
+    .perfume-details {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
+    .perfume-details img {
+      max-width: 100%;
+      margin-bottom: 20px;
+      
+    }
+
+    .brand {
+        font-size: 26px;
+        font-weight: bold;
+       
+    }
+    .name {
+        font-size: 18px;
+    }
+    .note-images-container{
+        display: flex;
+     
+    }
+    .description{
+        max-width: 250px;
+        word-wrap: break-word;
+    }
+    .buy{
+        margin-top: 20px;
+    }
+    .star-rating{
+        display: flex;
+        align-items: center;
+
+    }
+    .star-rating img{
+        height:24px;
+    }
+    .perfume-info {
+        margin-left: 20px; /* Adjust the value as needed */
+        max-width: 400px; /* Limits the width of the info container */
+    }
+    .stop-smell{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+    .featured-notes{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        font-weight:bold;
+    }
+    .learn-more{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+    .note-images-container2{
+        display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .note-image-feature{
+ 
+        display: flex;
+      align-items: flex-start;
+      justify-content: center;
+ 
+    }
+  </style>
+<div class="breadcrumb">
+
+    <a href="{{ url_for('product.perfume_page') }}">perfume</a>
+    <span> / </span>
+    <a href="{{ url_for('product.perfume_brand_page', product_brand=product.brand) }}">{{ product.brand }}</a>
+    <span> / </span>
+    <a class="active">{{ product.name }}</a>
+
+</div>
+<h1>Our perfume Detail</h1>
+<div class="perfume-details">
+  <img src="{{ url_for('static', filename=(product.brand + '_' + product.name + '.jpg')|lower|replace(' ','_')) }}" alt="perfume Image">
+  <div class="info-container">
+  <h3 class="brand">{{ product.brand }}</h3>
+  <p class="name">{{ product.name }}</p>
+  <p class="description">{{ product.description }}</p>
+  <p class="price">Price: ${{ product.price }}</p>
+  <div class="note-images-container">
+    {% set product_notes = product.notes.split(',') %}
+    {% for note in product_notes %}
+  
+    <img class="note-image" src="{{ url_for('static', filename=note.strip() + '.jpg') }}" alt="{{ note.strip() }}">
+    {% endfor %}
+    </div>
+    <div class="star-rating">
+        {% for _ in range(product.rating|int) %}
+            <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
+        {% endfor %}
+
+        {% for _ in range(5-product.rating|int) %}
+        <span><img src="{{url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
+        {% endfor %}
+    </div>
+  <button class="buy">Add To Cart</button>
+</div>
+</div>
+
+<h3 class ="stop-smell"> STOP AND SMELL THESE</h3>
+<h2 class="featured-notes"> FEATURED NOTES </h2>
+<h4 class="learn-more"> Learn more about the top, middle and bottom notes in this fragrance.</h4>
+<div class="note-images-container2">
+{% set product_notes = product.notes.split(',') %}
+    {% for note in product_notes %}
+  
+    <img class="note-image-feature" src="{{ url_for('static', filename=note.strip() + 'note' + '.jpg') }}" alt="{{ note.strip() }}">
+    {% endfor %}
+</div>
+
+{% endblock %}

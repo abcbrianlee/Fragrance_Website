@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block title %}Home Page{% endblock %}
+
+{%block content %} 
+<div style="display: flex; justify-content: center; align-items: center; height: calc(80vh - 150px);">
+    <div style="width: 50%;">
+</style>
+<form method="POST">
+    <h3 align="center">Sign up</h3>
+    <div class="form-row justify-content-center">    
+        <div class="form-group col-md-6">
+        <label for="email">Email Address</label>
+        <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        name="email" 
+        placeholder="Enter email"
+        style="width: 150%;"
+        />
+    </div>
+    </div>
+    <div class="form-row justify-content-center">    
+        <div class="form-group col-md-6">
+        <label for="firstName">First Name</label>
+        <input 
+        type="firstName" 
+        class="form-control" 
+        id="firstName" 
+        name="firstName" 
+        placeholder="Enter first name"
+        style="width: 150%;"
+        />
+    </div>
+    </div>
+    <div class="form-row justify-content-center">    
+        <div class="form-group col-md-6">
+        <label for="password1">Password</label>
+        <input 
+        type="password" 
+        class="form-control" 
+        id="password1" 
+        name="password1" 
+        placeholder="Enter password"
+        style="width: 150%;"
+        />
+    </div>
+    </div>
+    <div class="form-row justify-content-center">    
+        <div class="form-group col-md-6">
+        <label for="password2">Password (Confirm)</label>
+        <input 
+        type="password" 
+        class="form-control" 
+        id="password2" 
+        name="password2" 
+        placeholder="Confirm password"
+        style="width: 150%;"
+        />
+    </div>
+    </div>
+    <br />
+    <div class="form-row justify-content-center">    
+        <div class="form-group col-md-6">
+            <button type="Login" class="btn btn-dark btn-block" style="width: 75%;">Login</button>
+    </div>
+    </div>
+</form>
+    {% endblock %}
