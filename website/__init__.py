@@ -27,7 +27,7 @@ def create_app():
     app.register_blueprint(product_bp, url_prefix='/product')
 
 
-    from .models import User, Note, Product
+    from .models import User, Product
 
     with app.app_context():
         db.create_all()

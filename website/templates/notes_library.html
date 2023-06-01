@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Notes Library Page{% endblock %}
+{% block content %}
+<style>
+.note-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .note-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    text-align: center;
+}
+
+.note-item img {
+    max-width: 200px; /* Adjust the width as needed */
+    height: auto;
+}
+</style>
+
+<h1>Notes Library</h1>
+<h5>Learn more about the world of notes, and how they come together to create a beautiful fragrance.</h5>
+<div class="note-container">
+{%for note in notes|sort(attribute='note_name') %}
+    <div class = "note-item">
+    <a href="{{ url_for('product.notes_page', note_id=note.note_id) }}">
+    <img src="{{ url_for('static', filename=(note.note_name  + '_library' + '.jpg')) }}" alt="Note Image">
+    </a>
+    {{note.note_name}}
+    
+    </div>
+
+{% endfor %}
+</div>
+
+   
+
+
+{% endblock %}

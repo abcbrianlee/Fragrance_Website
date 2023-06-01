@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Detail Page{% endblock %}
-
-{%block content %}
+{% block content %}
 <style>
-    .breadcrumb {
+  .breadcrumb {
     font-size: 14px;
     margin: 10px 0;
     background-color: white;
@@ -29,128 +28,468 @@
     font-weight: bold;
   }
 
-    .cologne-details {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
+  .cologne-details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .cologne-details img {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .brand {
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .note-images-container {
+    display: flex;
+  }
+
+  .description {
+    max-width: 250px;
+    word-wrap: break-word;
+  }
+
+  .buy {
+    margin-top: 20px;
+  }
+
+  .star-rating {
+    display: flex;
+    align-items: center;
+  }
+
+  .star-rating img {
+    height: 24px;
+  }
+
+  .cologne-info {
+    margin-left: 20px;
+    max-width: 400px;
+  }
+
+  .stop-smell {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  .featured-notes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .learn-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+
+  .note-images-container2 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .note-image-feature {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+
+
+  .modal {
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.modal-content .modal-image {
+max-width: 128px;
+max-height: 128px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+}
+.stars-container {
+  display: flex;
+  align-items: center;
+}
+.star{
+  max-width: 20px;
+  max-height:20px;
+  margin-right: 5px;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#commentInput {
+    height: 100px;
+  }
+  textarea.exceeded {
+  border: 1px solid red;
+}
+
+.modal2 {
+  width: 300px;
+  height: 200px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.modal2-content {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.close2 {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+  .defer,.rating-rate,.heres-what{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+
+.star-rating-box {
+    display: flex;
+    margin-left: 20px;
+  }
+
+  .star-rating-box img {
+    height: 18px;
+  }
+  .rating-box {
+    width: 700px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(247, 239, 233, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin-top:20px;
+    margin-bottom: 40px;
     
-    .cologne-details img {
-      max-width: 100%;
-      margin-bottom: 20px;
-      
-    }
-
-    .brand {
-        font-size: 26px;
-        font-weight: bold;
-       
-    }
-    .name {
-        font-size: 18px;
-    }
-    .note-images-container{
-        display: flex;
-     
-    }
-    .description{
-        max-width: 250px;
-        word-wrap: break-word;
-    }
-    .buy{
-        margin-top: 20px;
-    }
-    .star-rating{
-        display: flex;
-        align-items: center;
-
-    }
-    .star-rating img{
-        height:24px;
-    }
-    .cologne-info {
-        margin-left: 20px; /* Adjust the value as needed */
-        max-width: 400px; /* Limits the width of the info container */
-    }
-    .stop-smell{
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 18px;
-    }
-    .featured-notes{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 26px;
-        font-weight:bold;
-    }
-    .learn-more{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 18px;
-    }
-    .note-images-container2{
-        display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
-    .note-image-feature{
- 
-        display: flex;
-      align-items: flex-start;
-      justify-content: center;
- 
-    }
-  </style>
-<div class="breadcrumb">
-
-    <a href="{{ url_for('product.cologne_page') }}">Cologne</a>
-    <span> / </span>
-    <a href="{{ url_for('product.cologne_brand_page', product_brand=product.brand) }}">{{ product.brand }}</a>
-    <span> / </span>
-    <a class="active">{{ product.name }}</a>
-
-</div>
-<h1>Our Cologne Detail</h1>
-<div class="cologne-details">
-  <img src="{{ url_for('static', filename=(product.brand + '_' + product.name + '.jpg')|lower|replace(' ','_')) }}" alt="Cologne Image">
-  <div class="info-container">
-  <h3 class="brand">{{ product.brand }}</h3>
-  <p class="name">{{ product.name }}</p>
-  <p class="description">{{ product.description }}</p>
-  <p class="price">Price: ${{ product.price }}</p>
-  <div class="note-images-container">
-    {% set product_notes = product.notes.split(',') %}
-    {% for note in product_notes %}
   
-    <img class="note-image" src="{{ url_for('static', filename=note.strip() + '.jpg') }}" alt="{{ note.strip() }}">
-    {% endfor %}
+  }
+  .rating-info {
+    display: flex;
+    position: relative;
+
+  }
+  .rating {
+    margin-left: 0;
+    font-size: 32px;
+    font-weight: bold;
+ 
+  }
+  .rating-count {
+
+    margin-top: 20px;
+    position: absolute;
+    margin-left: 65px;
+    font-size: 12px;
+  }  
+  .vertical-line{
+    position: absolute;
+    left: 40%;
+    right:60%;
+    transform: translate(-90%, -30%);
+    width: 1px;
+    height: 100px;
+    background-color: black;
+  
+  }
+  #ratingButton{
+    margin-left: 200px;
+    background-color: black;
+    color: white;
+  }
+  #ratingButton2{
+    margin-left: 200px;
+    background-color: black;
+    color: white;
+    height: 40px;
+    width: 140px;
+  }
+  
+  .review-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .review-box {
+    width: 700px;
+    height: 150px;
+
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-info{
+    display: flex;
+ 
+  }
+  .review-user{
+    font-weight: bold;
+    font-size:14px;
+    margin-left: 0px;
+    margin-top: -30px;
+  }
+  
+  .review-rating {
+    margin-right: 0.5 inch;
+  }
+  .review-date-wrapper {
+  margin-left: 20px;
+  margin-top: -27px;
+}
+  .review-date {
+    margin-bottom: 0px;
+    font-size: 14px;
+
+  }
+  .review-comment {
+  margin-left: -190px;
+  margin-top: 25px;
+    
+  }
+
+  .star-review {
+    display: flex;
+    margin-left: 120px;
+    margin-top: -30px;
+  }
+
+  .star-review img {
+    height: 18px;
+  }
+  
+
+</style>
+
+<div class="breadcrumb">
+  <a href="{{ url_for('product.cologne_page') }}">Cologne</a>
+  <span> / </span>
+  <a href="{{ url_for('product.cologne_brand_page', product_brand=product.brand) }}">{{ product.brand }}</a>
+  <span> / </span>
+  <a class="active">{{ product.name }}</a>
+</div>
+
+<h1>Our Cologne Detail</h1>
+
+<div class="cologne-details">
+  <img src="{{ url_for('static', filename=(product.brand + '_' + product.name +'_detail.jpg')|lower|replace(' ','_')) }}" alt="Cologne Image">
+  <div class="info-container">
+    <h3 class="brand">{{ product.brand }}</h3>
+    <p class="name">{{ product.name }}</p>
+    <p class="description">{{ product.description }}</p>
+    <p class="price">Price: ${{ product.price }}</p>
+    <div class="note-images-container">
+      {% for product_note in product.product_notes %}
+        {% for note in notes %}
+          {% if product_note.note_id == note.note_id %}
+            <div class="note-item">
+              <img class="note-image" src="{{ url_for('static', filename=note.note_name.strip() + '.jpg') }}" alt="{{ note.note_name.strip() }}">
+              <p class="note">{{ note.note_name }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
     </div>
     <div class="star-rating">
-        {% for _ in range(product.rating|int) %}
-            <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
-        {% endfor %}
+      {% for _ in range(product.rating|int) %}
+        <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
+      {% endfor %}
 
-        {% for _ in range(5-product.rating|int) %}
-        <span><img src="{{url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
-        {% endfor %}
+      {% for _ in range(5-product.rating|int) %}
+        <span><img src="{{ url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
+      {% endfor %}
     </div>
-  <button class="buy">Add To Cart</button>
-</div>
+    <button class="buy">Add To Cart</button>
+  </div>
 </div>
 
-<h3 class ="stop-smell"> STOP AND SMELL THESE</h3>
-<h2 class="featured-notes"> FEATURED NOTES </h2>
-<h4 class="learn-more"> Learn more about the top, middle and bottom notes in this fragrance.</h4>
+<h3 class="stop-smell">STOP AND SMELL THESE</h3>
+<h2 class="featured-notes">FEATURED NOTES</h2>
+<h4 class="learn-more">Learn more about the top, middle and bottom notes in this fragrance.</h4>
+
 <div class="note-images-container2">
-{% set product_notes = product.notes.split(',') %}
-    {% for note in product_notes %}
-  
-    <img class="note-image-feature" src="{{ url_for('static', filename=note.strip() + 'note' + '.jpg') }}" alt="{{ note.strip() }}">
-    {% endfor %}
-</div>
+  {% for product_note in product.product_notes %}
+    {% for note in notes %}
+      {% if product_note.note_id == note.note_id %}
 
+        <a href="{{ url_for('product.notes_page', note_id=note.note_id)}}" {{note.note_id}}>
+        <img class="note-image-feature" src="{{ url_for('static', filename=note.note_name.strip() + 'note' + '.jpg') }}" alt="{{ note.note_name.strip() }}">
+         </a> 
+        {% endif %}
+    {% endfor %}
+  {% endfor %}
+</div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p class = "rate-header">Rate and review</p>
+        <p class = "rate-body">You've tried the product, now tell us what you really think.</p>
+        {{product.brand}}
+        {{product.name}}
+        <img class="modal-image" src="{{ url_for('static', filename=(product.brand + '_' + product.name + '.jpg')|lower|replace(' ','_')) }}" alt="Cologne Image">
+        <p class ="tap-to-rate">Tap to rate</p>
+        
+        <div class="stars-container">
+          
+          <img src="{{ url_for('static', filename='unstar.png') }}" class="star" data-value="1">
+          <img src="{{ url_for('static', filename='unstar.png') }}" class="star" data-value="2">
+          <img src="{{ url_for('static', filename='unstar.png') }}" class="star" data-value="3">
+          <img src="{{ url_for('static', filename='unstar.png') }}" class="star" data-value="4">
+          <img src="{{ url_for('static', filename='unstar.png') }}" class="star" data-value="5">
+          <p id="ratingValue"></p>
+
+        </div>
+
+       
+        <textarea id="commentInput" rows="4" placeholder="Enter review here"></textarea>
+        <p id="charCount">0/200</p>
+        <button id="submitCommentButton" data-product-id="{{product.id}}" data-user-id="{{user.id}}" >Submit</button>
+      </div>
+    </div>
+
+
+
+    <div id = "modal2" class="modal2" style="display: none;">
+      <div class="modal2-content">
+        <span class="close2">&times;</span>
+        <p class = "modal2-thank you">Thank you for your review!</p>
+      </div>
+    </div>
+    
+    <h3 class = "defer">DEFER TO THE CROWD</h3>
+    <h2 class = "rating-rate">{{product.rating_count}} REVIEWS</h2>
+    <h3 class = "heres-what">Here's what our customers had to say about this product.</h3>
+   
+    <div class = "rating-box"> 
+      <div class= "rating-info">
+        <span class="rating">{{product.rating|round(1)}}</span> 
+          <div class = "star-rating-box">
+            {% for _ in range(product.rating|int) %}
+              <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
+            {% endfor %}
+
+            {% for _ in range(5-product.rating|int) %}
+              <span><img src="{{ url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
+            {% endfor %}
+          </div>
+        
+            <div class = "rating-count">
+              {{product.rating_count}} ratings
+            </div>
+            <div class="vertical-line"></div>
+            {% if current_user.is_authenticated %}
+            <button id="ratingButton">Leave a Rating/Comment</button>
+            {% else %}
+              <a href="/auth/login"><button id ="ratingButton2">Login To Review</button></a>
+            {% endif %}
+      </div>
+    </div>
+ 
+    <div class="review-container">
+    {% for review in reviews%}
+      <div class = "review-box">
+        <div class = "user-info">
+          <span class = "user">
+            {% for u in users%}
+              {% if u.id == review.user_id%}
+                <span class="review-user">{{u.first_name}}</span>
+              {% endif %}
+            {% endfor %}
+          </span>
+        </div>
+        <div class = "review-info">
+
+
+          <div class = "star-review">
+            {% for _ in range(review.rating) %}
+              <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
+            {% endfor %}
+
+            {% for _ in range(5-review.rating) %}
+              <span><img src="{{ url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
+            {% endfor %}
+          </div>
+
+
+          <div class="review-date-wrapper">
+          <span class="review-date">{{review.date}}</span>
+          </div>
+          <div class="review-comment">{{review.comment}}</div>
+        </div>  
+      </div>
+      {% endfor %}
+    </div>
+       
+
+    
+    <script src="{{ url_for('static', filename='js/window.js') }}"></script>
+  
+    
 {% endblock %}
+    

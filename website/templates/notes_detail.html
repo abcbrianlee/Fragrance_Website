@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Note Detail Page{% endblock %}
+{% block content %}
+<style>
+.learn {
+    margin-bottom: 10px;
+}
+.note {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 32px;
+    margin-top:-10px;
+}
+.description{
+    margin-top:-10px;
+}
+.note-image-container {
+display: flex;
+align-items: flex-start;
+justify-content: center;
+margin-top: 100px;
+margin-left: 150px;
+
+}
+.midway {
+    text-align: center;
+    margin-top: 1in;
+
+}
+.product-list {
+    font-size: 14px;
+    font-weight: bold;
+}
+.fragrance-that-use {
+    font-size: 32px;
+    text-transform:capitalize;
+}
+.info-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  background-color: rgba(247, 239, 233, 1);
+  width: 300px;
+}
+
+</style>
+
+    <div class="note-image-container">
+        {% for note in notes %}
+            {% if product_notes|selectattr('note_id', 'equalto', note.note_id)|list %}
+                <img src="{{ url_for('static', filename=(note.note_name  + 'top' + '.jpg')) }}" alt="Note Image">
+   
+                <div class="note-header">
+                    <p class="learn">LEARN ALL ABOUT</p>
+                    <p class="note">{{ note.note_name }}</p>
+                    <p class="description">{{ note.description }}</p>
+                </div>
+    </div>
+                <div class="midway">
+                    <p class="product-list">PRODUCT LIST</p>
+                    <p class="fragrance-that-use">FRAGRANCES THAT USE {{ note.note_name }}</p>
+                </div>
+                <div class="info-container">
+                    {% for product_note in product_notes if product_note.note_id == note.note_id %}
+                        {% for product in products if product.id == product_note.product_id %}
+                            <div class="item">
+                                <img src="{{ url_for('static', filename=(product.brand + '_' + product.name + '.jpg')|lower|replace(' ','_')) }}" alt="Frgrance Image">
+                                <p class="product-brand">{{ product.brand }}</p>
+                                <p class="product-name">{{ product.name }}</p>
+                                <p class="product-price">{{ product.price }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+   
+
+
+{% endblock %}

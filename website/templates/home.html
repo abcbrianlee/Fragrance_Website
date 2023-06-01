@@ -2,21 +2,87 @@
 {% block title %}Home Page{% endblock %}
 
 {%block content %} 
-<h1>This is the homepage</h1>
+
 <style>
     #banner {
-        width:80%;
-        height:80%;
+        margin-top: 40px;
+        width:100%;
+        max-width: 100vw;
+        height:65vh;
         object-fit:cover;
     }
+    .home-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 40px;
+}
+.home-note-selection {
+  display: flex;
+  justify-content: center;
+
+}
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+.note-image {
+  width:200px;
+
+}
+.note p{
+  margin-top: 10px;
+  font-size: 16px;
+}
+#button{
+  
+  background-color: black;
+  color: white;
+  height: 50px;
+  width: 300px;
+  margin-left: 37%;
+  }
+    
 </style>
 <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center">
-        <img id="banner" src="{{ url_for('static', filename='banner.jpg') }}">
+      <div class="col-md-12 text-center" style="position: relative;">
+        <img id="banner" src="{{ url_for('static', filename='banner1.jpg') }}">
+        <h1 class="banner-text" style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); color: black; font-size: 32px;">GET 50% + A FREE CASE <br>WHEN YOU ORDER NOW</h1>
       </div>
     </div>
   </div>
 
+  <div class = "home-mid">
+    <h3 class = "take-note"> TAKE NOTE</h3>
+    <h2 class = "trending">TRENDING FRAGRANCE NOTES</h2>
+    <p class ="home-mid-content">Explore the most-popular fragrance notes as voted by the community</p>
+  </div>
 
+    <div class = "home-note-selection">
+      <div class="note">
+        <img src="{{ url_for ('static', filename='ambroxannote.jpg') }}">
+        <p>Ambroxan</p>
+      </div>
+      <div class="note">
+        <img src="{{ url_for ('static', filename='cedarwoodnote.jpg') }}">
+        <p>Cedarwood</p>
+      </div>
+      <div class="note">
+        <img src="{{ url_for ('static', filename='lavendernote.jpg') }}">
+        <p>Lavender</p>
+      </div>
+      <div class="note">
+        <img src="{{ url_for ('static', filename='pineapplenote.jpg') }}">
+        <p>Pineapple</p>
+      </div>
+    </div>
+    
+    <a href = "/product/notes">
+    <button id="button">EXPLORE OUR NOTES LIBRARY</button>
+    </a>
 {% endblock %}
