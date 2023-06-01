@@ -39,15 +39,23 @@
     margin-bottom: 20px;
   }
 
-  .brand {
+  .name {
     font-size: 26px;
     font-weight: bold;
   }
 
-  .name {
-    font-size: 18px;
+  .brand {
+    font-size: 16px;
+    font-weight: bold;
   }
-
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .note {
+    font-size: 14px;
+    
+  }
   .note-images-container {
     display: flex;
   }
@@ -55,6 +63,8 @@
   .description {
     max-width: 250px;
     word-wrap: break-word;
+    font-size: 14px;
+    font-weight: bold;
   }
 
   .buy {
@@ -340,8 +350,8 @@ max-height: 128px;
 <div class="cologne-details">
   <img src="{{ url_for('static', filename=(product.brand + '_' + product.name +'_detail.jpg')|lower|replace(' ','_')) }}" alt="Cologne Image">
   <div class="info-container">
-    <h3 class="brand">{{ product.brand }}</h3>
-    <p class="name">{{ product.name }}</p>
+    <h3 class="name">{{ product.name }}</h3>
+    <p class="brand">{{ product.brand }}</p>
     <p class="description">{{ product.description }}</p>
     <p class="price">Price: ${{ product.price }}</p>
     <div class="note-images-container">

@@ -13,8 +13,11 @@ def cologne_page():
     products = Product.query.filter_by(type='cologne').all()
     notes = Notes.query.all()
     productNotes = ProductNotes.query.all()
+    reviews = Review.query.all()
+
+
     
-    return render_template("cologne.html", user=current_user, products=products, notes=notes,productNotes=productNotes)
+    return render_template("cologne.html", user=current_user, products=products, notes=notes,productNotes=productNotes, reviews=reviews)
 
 @product_bp.route('/perfume')
 def perfume_page():
@@ -37,8 +40,6 @@ def cologne_detail_page(product_id):
     productNotes = ProductNotes.query.all()
     users = User.query.all()
     reviews = Review.query.filter_by(product_id=product_id).all()
-
-
     
 
     return render_template("cologne_detail.html", user=current_user, product=product, notes=notes, productNotes=productNotes,users=users, reviews=reviews)

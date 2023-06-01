@@ -2,6 +2,26 @@
 {% block title %}Cologne Page{% endblock %}
 {% block content %}
 <style>
+  .browse {
+    text-align: left;
+    font-size: 28px;
+    margin-top: 40px;
+    font-weight: bold;
+
+  }
+  .browse-perfumes {
+    color: black;
+    display: inline;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .name {
+    font-size: 18px;
+  }
+  .brand {
+    font-size: 14px;
+    font-weight: bold;
+  }
   .cologne-container {
     display: flex;
     flex-wrap: wrap;
@@ -24,6 +44,9 @@
   .note-image {
     margin-right: 10px;
   }
+  .note {
+    font-size: 12px;
+  }
 
   .buy {
   background-color: black;
@@ -38,18 +61,37 @@
     display: inline-block;
     margin-right: 10px;
   }
+
+  .star-review {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .star-review img {
+    height: 18px;
+  }
 </style>
 
-<h1>Browse Our Cologne</h1>
+<h1 class="browse">BROWSE <a href ="/product/perfume"><div class = "browse-perfumes">PERFUMES</div></a> OR COLOGNES </h1>
 <div class="cologne-container">
   {% for product in products %}
   <div class="cologne">
     <a href="{{ url_for('product.cologne_detail_page', product_id=product.id) }}">
       <img src="{{ url_for('static', filename=(product.brand + '_' + product.name + '.jpg')|lower|replace(' ','_')) }}" alt="Cologne Image">
     </a>
-    <h3 class="brand">{{ product.brand }}</h3>
-    <p class="name">{{ product.name }}</p>
-    <p class="price">Price: ${{ product.price }}</p>
+    <h3 class="name">{{ product.name }}</h3>
+    <p class="brand">{{ product.brand }}</p>
+    
+    <div class = "star-review">
+      {% for _ in range (product.rating|int) %}
+      <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
+      {% endfor %}
+
+      {% for _ in range (5-product.rating|int) %}
+        <span><img src="{{ url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
+      {% endfor %}
+    </div>
+  
     <div class="notes-container">
       {% for product_note in product.product_notes %}
         {% for note in notes %}
@@ -62,7 +104,9 @@
         {% endfor %}
       {% endfor %}
     </div>
+    <a href="{{ url_for('product.cologne_detail_page', product_id=product.id) }}">
     <button class="buy">EXPLORE</button>
+    </a>
   </div>
   {% endfor %}
 </div>

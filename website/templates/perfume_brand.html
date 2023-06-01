@@ -6,9 +6,15 @@
     display: flex;
     flex-wrap: wrap;
   }
-
+  .name {
+    font-size: 18px;
+  }
+  .brand {
+    font-size: 14px;
+    font-weight: bold;
+  }
   .perfume {
-    width: 300px;
+    width: 320px;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -29,8 +35,25 @@
     margin-right: 10px;
   }
 
+  .note {
+    font-size: 12px;
+  }
+
   .buy {
-    margin-top: 20px;
+  background-color: black;
+  color: white;
+  height: 35px;
+  width: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  }
+  .star-review {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .star-review img {
+    height: 18px;
   }
 </style>
 
@@ -42,19 +65,34 @@
       <img src="{{ url_for('static', filename=(product.brand + '_' + product.name + '.jpg')|lower|replace(' ','_')) }}" alt="Cologne Image">
     </a>
 
-    <h3 class="brand">{{ product.brand }}</h3>
-    <p class="name">{{ product.name }}</p>
-    <p class="price">Price: ${{ product.price }}</p>
-    <div class="note-images-container">
-      {% for product_note in product.product_notes %}
-      {% for note in notes %}
-        {% if product_note.note_id == note.note_id %}
-        <img class="note-image" src="{{ url_for('static', filename=note.note_name.strip() + '.jpg') }}" alt="{{ note.note_name.strip() }}">
-        {% endif %}
+    <h3 class="name">{{ product.name }}</h3>
+    <p class="brand">{{ product.brand }}</p>
+ 
+    <div class = "star-review">
+      {% for _ in range (product.rating|int) %}
+      <span><img src="{{ url_for('static', filename='star.png') }}" alt="Filled Star"></span>
       {% endfor %}
+
+      {% for _ in range (5-product.rating|int) %}
+        <span><img src="{{ url_for('static', filename='unstar.png') }}" alt="Unfilled Star"></span>
       {% endfor %}
     </div>
-    <button class="buy">Buy Now</button>
+
+    <div class="note-images-container">
+    {% for product_note in product.product_notes %}
+      {% for note in notes %}
+        {% if product_note.note_id == note.note_id %}
+        <div class="note-item">
+          <img class="note-image" src="{{ url_for('static', filename=note.note_name.strip() + '.jpg') }}" alt="{{ note.note_name.strip() }}">
+          <p class="note"> {{note.note_name }}</p>
+        </div>        
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </div>
+    <a href="{{ url_for('product.perfume_detail_page', product_id=product.id) }}">
+      <button class="buy">EXPLORE</button>
+    </a>  
   </div>
   {% endfor %}
 </div>
