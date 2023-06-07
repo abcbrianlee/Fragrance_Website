@@ -12,7 +12,8 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'abcdefg'
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://' + DB_NAME
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/abcbrianlee/CS Folder/ECommerce_Site/database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/abcbrianlee/CS Folder/Fragrance Website/database.db'
+   
     db.init_app(app)
 
 
